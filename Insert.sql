@@ -56,17 +56,20 @@ INSERT into Fdependentes(codFuncionario, fcodDep) VALUES
 ('F07','D20'),
 ('F01','');
 
-INSERT into Telefone (Telefone_PK, codCliente) VALUES
-(987068994,01),
-(980734933,02),
-(998374296,03),
-(996881988,04),
-(976863375,05),
-(989681171,06),
-(983372217,07),
-(992506993,08),
-(973414299,09),
-(996333251,10);
+codTelefone, telefonePri, telefoneSec, codCliente
+
+INSERT into Telefone (codTelefone, telefonePri, telefoneSec, codCliente) VALUES
+('T01',979843952,987068994,01),
+('T02',979843953,980734933,02),
+('T03',979843943,998374296,03),
+('T04',979843954,996881988,04),
+('T05',979843976,976863375,05),
+('T06',979843912,989681171,06),
+('T07',979843921,983372217,07),
+('T08',979843965,992506993,08),
+('T09',979843979,973414299,09),
+('T10',979843902,996333251,10);
+
 
 INSERT into Despesas(data, codConsumo, valorConsumido, codCliente) VALUES
 ('09/09/2013','C0692097',1100,01),

@@ -37,7 +37,7 @@ FOREIGN KEY (codFuncionario) REFERENCES Funcionario_Gerente_Recepcionista (codFu
 );
 
 CREATE TABLE Despesas (
-codConsumo INTEGER PRIMARY KEY,
+codConsumo varchar(20) PRIMARY KEY,
 data VARCHAR(20),
 valorConsumido INTEGER,
 codCliente VARCHAR(20),
@@ -55,7 +55,9 @@ numRua CHAR(4)
 );
 
 CREATE TABLE Telefone (
-Telefone_PK INTEGER PRIMARY KEY,
+codTelefone INTEGER PRIMARY KEY,
+telefonePri INTEGER,
+telefoneSec INTEGER,
 codCliente VARCHAR(20),
 FOREIGN KEY (codCliente) REFERENCES Cliente (codCliente)
 );
