@@ -4,9 +4,9 @@ codReserva VARCHAR(20) PRIMARY KEY,
 formaPagamento VARCHAR(10),
 Status VARCHAR(10),
 codFuncionario VARCHAR(20),
-codCliente VARCHAR(20),
-FOREIGN KEY(codFuncionario) REFERENCES Funcionário_Gerente_Recepcionista (codFuncionario),
-FOREIGN KEY(codCliente) REFERENCES Cliente (codCliente)
+codCli VARCHAR(20),
+FOREIGN KEY(codFuncionario) REFERENCES Funcionario (codFuncionario),
+FOREIGN KEY(codCli) REFERENCES Cliente (codCliente)
 );
 
 CREATE TABLE Quarto (
@@ -15,10 +15,10 @@ valorDiaria INTEGER(10),
 qtdHospede INTEGER,
 tipoQuarto VARCHAR(10),
 numQuarto INTEGER,
-codReserva VARCHAR(30),
+codRes VARCHAR(30),
 dataChegada VARCHAR(20),
 dataSaida VARCHAR(20),
-FOREIGN KEY(codReserva) REFERENCES Reserva (codReserva)
+FOREIGN KEY(codRes) REFERENCES Reserva (codReserva)
 );
 
 CREATE TABLE Funcionario(
@@ -32,16 +32,16 @@ Senha VARCHAR(10)
 CREATE TABLE Dependente (
 Nome VARCHAR(10),
 codDep VARCHAR(20) PRIMARY KEY,
-codFuncionario VARCHAR(20),
-FOREIGN KEY (codFuncionario) REFERENCES Funcionario_Gerente_Recepcionista (codFuncionario)
+codF VARCHAR(20),
+FOREIGN KEY (codF) REFERENCES Funcionario (codFuncionario)
 );
 
 CREATE TABLE Despesas (
 codConsumo varchar(20) PRIMARY KEY,
 data VARCHAR(20),
 valorConsumido INTEGER,
-codCliente VARCHAR(20),
-FOREIGN KEY(codCliente) REFERENCES Cliente (codCliente)
+codC VARCHAR(20),
+FOREIGN KEY(codC) REFERENCES Cliente (codCliente)
 );
 
 CREATE TABLE Cliente (
@@ -55,17 +55,17 @@ numRua CHAR(4)
 );
 
 CREATE TABLE Telefone (
-codTelefone INTEGER PRIMARY KEY,
+codTelefone char(5) PRIMARY KEY,
 telefonePri INTEGER,
 telefoneSec INTEGER,
-codCliente VARCHAR(20),
-FOREIGN KEY (codCliente) REFERENCES Cliente (codCliente)
+codCl VARCHAR(20),
+FOREIGN KEY (codCl) REFERENCES Cliente (codCliente)
 );
 
 CREATE TABLE FDependentes (
-codFuncionario VARCHAR(20),
+codFunc VARCHAR(20),
 fcodDep VARCHAR(20),
-FOREIGN KEY(codFuncionario) REFERENCES Funcionário_Gerente_Recepcionista (codFuncionario),
+FOREIGN KEY(codFunc) REFERENCES Funcionario (codFuncionario),
 FOREIGN KEY(fcodDep) REFERENCES Dependente (codDep)
 );
 
