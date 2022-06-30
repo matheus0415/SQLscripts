@@ -1,67 +1,69 @@
 
 CREATE TABLE Reserva (
-codReserva VARCHAR(10) PRIMARY KEY,
+codReserva INTEGER PRIMARY KEY,
 formaPagamento VARCHAR(10),
 Status VARCHAR(10),
-dataChegada VARCHAR(10),
-dataSaida VARCHAR(10),
-codFuncionario VARCHAR(10),
-codCliente VARCHAR(10),
+codFuncionario INTEGER,
+codCliente INTEGER,
 FOREIGN KEY(codFuncionario) REFERENCES Funcionário_Gerente_Recepcionista (codFuncionario),
 FOREIGN KEY(codCliente) REFERENCES Cliente (codCliente)
 );
 
 CREATE TABLE Quarto (
-codQuarto VARCHAR(10) PRIMARY KEY,
-valorDiaria VARCHAR(10),
-qtdHospede VARCHAR(10),
+codQuarto INTEGER(10) PRIMARY KEY,
+valorDiaria INTEGER(10),
+qtdHospede INTEGER,
 tipoQuarto VARCHAR(10),
-numQuarto VARCHAR(10),
-codReserva VARCHAR(10),
+numQuarto INTEGER,
+codReserva INTEGER,
+dataChegada DATE,
+dataSaida DATE,
 FOREIGN KEY(codReserva) REFERENCES Reserva (codReserva)
 );
 
-CREATE TABLE Funcionário_Gerente_Recepcionista (
-codFuncionario VARCHAR(10) PRIMARY KEY,
-tipoFuncionario VARCHAR(10),
-Nome VARCHAR(10),
-Login VARCHAR(10),
-Senha VARCHAR(10)
+CREATE TABLE Funcionario_Gerente_Recepcionista (
+codFuncionario INTEGER(10) PRIMARY KEY,
+tipoFuncionario VARCHAR(15),
+Nome VARCHAR(50),
+Login VARCHAR(15),
+Senha INTEGER
 );
 
 CREATE TABLE Dependente (
 Nome VARCHAR(10),
-codDep VARCHAR(10) PRIMARY KEY
+codDep INTEGER PRIMARY KEY,
+codFuncionario INTEGER,
+FOREIGN KEY (codFuncionario) REFERENCES Funcionario_Gerente_Recepcionista (codFuncionario)
 );
 
 CREATE TABLE Despesas (
-data VARCHAR(10),
-codConsumo VARCHAR(10) PRIMARY KEY,
-valorConsumido VARCHAR(10),
-codCliente VARCHAR(10),
+codConsumo INTEGER PRIMARY KEY,
+data DATE,
+valorConsumido INTEGER,
+codCliente INTEGER,
 FOREIGN KEY(codCliente) REFERENCES Cliente (codCliente)
 );
 
 CREATE TABLE Cliente (
-email VARCHAR(10),
-codCliente VARCHAR(10) PRIMARY KEY,
-nome VARCHAR(10),
-RG VARCHAR(10),
-Rua VARCHAR(10),
+codCliente INTEGER PRIMARY KEY,
+email VARCHAR(30),
+nome VARCHAR(50),
+RG CHAR(11),
+Rua VARCHAR(30),
 Cidade VARCHAR(10),
-numRua VARCHAR(10)
+numRua CHAR(4)
 );
 
 CREATE TABLE Telefone (
 Telefone_PK INTEGER PRIMARY KEY,
-Telefone VARCHAR(10),
-codCliente_FK VARCHAR(),
-FOREIGN KEY(codCliente_FK) REFERENCES Cliente (codCliente)
+Telefone CHAR(11),
+codCliente INTEGER,
+FOREIGN KEY (codCliente) REFERENCES Cliente (codCliente)
 );
 
-CREATE TABLE Possui (
-codFuncionario VARCHAR(10),
-codDep VARCHAR(10),
+CREATE TABLE FuncionarioDependentes (
+codFuncionario INTEGER,
+codDep INTEGER,
 FOREIGN KEY(codFuncionario) REFERENCES Funcionário_Gerente_Recepcionista (codFuncionario),
 FOREIGN KEY(codDep) REFERENCES Dependente (codDep)
 );
